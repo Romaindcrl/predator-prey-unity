@@ -24,7 +24,8 @@ namespace PredatorPrey
     public sealed class GrassPatch : Organism
     {
         public override bool Available => remaining <= 0;
-        private float remaining;
+        public float Growth => Available ? 1 : 1 - remaining / regrowthDelay;
+        private float remaining, regrowthDelay;
 
         internal GrassPatch(int id, Vector2 position) : base(id, Species.Grass, position) { }
         internal void Grow(float seconds) => remaining -= seconds;
@@ -32,6 +33,7 @@ namespace PredatorPrey
         internal bool TryGraze(float regrowthSeconds)
         {
             if (!Available) return false;
+            regrowthDelay = regrowthSeconds;
             remaining = regrowthSeconds;
             return true;
         }

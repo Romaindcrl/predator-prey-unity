@@ -8,6 +8,7 @@ namespace PredatorPrey
         [SerializeField] private OrganismView wolfPrefab;
         [SerializeField] private OrganismView grassPrefab;
         [SerializeField] private PopulationPlot plot;
+        [SerializeField] private Transform ground;
         [SerializeField] private MeadowSettings settings = new MeadowSettings();
 
         public MeadowScene Habitat { get; private set; }
@@ -16,6 +17,8 @@ namespace PredatorPrey
         private void Start()
         {
             Habitat = new MeadowScene(settings, transform, sheepPrefab, wolfPrefab, grassPrefab, true);
+            float fieldWidth = settings.halfExtent * 2 + 4;
+            ground.localScale = new Vector3(fieldWidth, ground.localScale.y, fieldWidth);
             Record();
         }
 

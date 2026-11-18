@@ -13,6 +13,8 @@ namespace PredatorPrey
 
         private bool showGraphics;
         private int previousMotion;
+        private static readonly int Sway = Animator.StringToHash("Base Layer.Sway");
+        private static readonly int Grow = Animator.StringToHash("Base Layer.Grow");
         private static readonly int Walk = Animator.StringToHash("Base Layer.Walk");
         private static readonly int Run = Animator.StringToHash("Base Layer.Run");
         private static readonly int Eat = Animator.StringToHash("Base Layer.Eat");
@@ -36,21 +38,32 @@ namespace PredatorPrey
             if (Body is GrassPatch patch)
             {
                 if (Shape.enabled != patch.Available) Shape.enabled = patch.Available;
-                bool display = showGraphics && patch.Available;
-                if (graphics.gameObject.activeSelf != display) graphics.gameObject.SetActive(display);
+                if (!showGraphics || animator == null || !animator.isInitialized) return;
+                if (!patch.Available)
+                {
+                    animator.speed = 0;
+                    animator.Play(Grow, 0, patch.Growth);
+                    previousMotion = Grow;
+                }
+                else if (previousMotion != Sway)
+                {
+                    animator.speed = 1;
+                    animator.Play(Sway, 0, (patch.Id % 17) / 17f);
+                    previousMotion = Sway;
+                }
                 return;
             }
 
             Animal animal = (Animal)Body;
             Quaternion heading = Quaternion.Euler(0, 90 - animal.Heading * Mathf.Rad2Deg, 0);
             transform.SetPositionAndRotation(GroundPosition(animal), heading);
-            if (!showGraphics || animator == null) return;
+            if (!showGraphics || animator == null || !animator.isInitialized) return;
 
             int motion = animal.State == AnimalState.Eat ? Eat
                 : animal.State == AnimalState.Flee || animal.State == AnimalState.Hunt ? Run : Walk;
             if (motion != previousMotion)
             {
-                animator.CrossFadeInFixedTime(motion, 0.12f);
+                animator.CrossFadeInFixedTime(motion, 0.12f, 0);
                 previousMotion = motion;
             }
         }

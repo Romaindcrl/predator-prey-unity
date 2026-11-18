@@ -86,10 +86,17 @@ public class PopulationPlot : MonoBehaviour
 
         if (!visible)
         {
-            Rect badge = new Rect(Screen.width - 182f, Screen.height - 42f, 170f, 30f);
+            string summary = "Populations";
+            if (samples.Count > 0)
+            {
+                Sample s = samples[samples.Count - 1];
+                summary = $"{s.Sheep} moutons  ·  {s.Wolves} loups  ·  {s.Grass} touffes";
+            }
+            string caption = $"{summary}     F2  ·  {speedLabel}";
+            float badgeWidth = Mathf.Min(Screen.width - 24f, labelStyle.CalcSize(new GUIContent(caption)).x + 20f);
+            Rect badge = new Rect(Screen.width - badgeWidth - 12f, Screen.height - 42f, badgeWidth, 30f);
             Fill(badge, new Color(0.08f, 0.11f, 0.13f, 0.94f));
-            GUI.Label(new Rect(badge.x + 9f, badge.y + 4f, 154f, 22f),
-                $"F2  ·  Populations     {speedLabel}", labelStyle);
+            GUI.Label(new Rect(badge.x + 9f, badge.y + 4f, badge.width - 16f, 22f), caption, labelStyle);
             return;
         }
 
