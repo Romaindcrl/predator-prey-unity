@@ -3,9 +3,7 @@ using System.Globalization;
 using System.IO;
 using PredatorPrey;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
 public static class PopulationStudy
@@ -39,11 +37,8 @@ public static class PopulationStudy
         path = Path.GetFullPath(path);
         string temp = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
         OrganismView sheep = Prefab("Sheep"), wolf = Prefab("Wolf"), grass = Prefab("Grass");
-        Scene previous = SceneManager.GetActiveScene();
-        Scene temporary = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
         try
         {
-            SceneManager.SetActiveScene(temporary);
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             using (StreamWriter csv = new StreamWriter(temp))
             {
@@ -56,6 +51,7 @@ public static class PopulationStudy
                         EditorUtility.DisplayProgressBar("Grass regrowth study", $"Seed {seed}, regrowth {delay} s",
                             (float)run / (Seeds.Length * RegrowthDelays.Length));
                     run++;
+                    // MeadowScene accepts only its own colliders. This root is removed even if a run fails.
                     GameObject root = new GameObject("Population study");
                     try
                     {
@@ -80,8 +76,6 @@ public static class PopulationStudy
         {
             if (!Application.isBatchMode) EditorUtility.ClearProgressBar();
             if (File.Exists(temp)) File.Delete(temp);
-            SceneManager.SetActiveScene(previous);
-            EditorSceneManager.CloseScene(temporary, true);
         }
     }
 
