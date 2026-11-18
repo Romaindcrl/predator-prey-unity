@@ -112,6 +112,10 @@ Avec la repousse lente, les moutons se sont moins reproduits dans les cinq paire
 
 Le [CSV des 190 relevés](Experiments/regrowth.csv) permet de retrouver chaque trajectoire.
 
+## Vérification en mode Play
+
+Sur la graine 17 avec la repousse à 12 s, une exécution de 100 s dans Unity 6000.6.4f1 a donné 39 naissances de moutons, 2 naissances de loups, 20 captures et 2 morts de faim. Il restait 49 moutons et 7 loups. Un mouton en fuite a bien gardé le loup comme cible alors qu’une touffe comestible était plus proche. Le lecteur autonome a également été compilé et lancé sous macOS sur Apple Silicon.
+
 ## Hypothèses et limites
 
 Le terrain est plat, la vision porte dans toutes les directions et les animaux peuvent se croiser. Une seule touffe nourrit un mouton par cycle de repousse. Les agents meurent de faim ou de prédation et n’ont aucune limite d’âge. Les effectifs observés dépendent de ces choix et de la durée de chaque partie.
