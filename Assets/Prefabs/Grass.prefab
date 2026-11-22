@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7304226509551902471}
   - component: {fileID: 5289818012559224579}
-  - component: {fileID: 2756860780859840686}
+  - component: {fileID: 5413761444266398922}
   m_Layer: 7
   m_Name: Grass
   m_TagString: Grass
@@ -87,7 +87,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.45, z: 0}
---- !u!114 &2756860780859840686
+--- !u!114 &5413761444266398922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,9 +96,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1524495108744007770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd4453501b94d9ba3db6a5582ca12ae, type: 3}
+  m_Script: {fileID: 11500000, guid: e76c250114684936b07c2fb725bbdf3f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PredatorPrey.OrganismView
+  m_EditorClassIdentifier: Assembly-CSharp::GrassBehaviour
+  regrowthTime: 12
+  grazedScale: 0.25
   graphics: {fileID: 8824734774819125325}
   animator: {fileID: 5498413101190074914}
 --- !u!1001 &2100045479051620275

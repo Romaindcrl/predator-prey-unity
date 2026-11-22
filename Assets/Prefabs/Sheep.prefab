@@ -42,7 +42,8 @@ GameObject:
   m_Component:
   - component: {fileID: 540421170591141256}
   - component: {fileID: 2102916242984321400}
-  - component: {fileID: 2291335853568292973}
+  - component: {fileID: 5614550580018136407}
+  - component: {fileID: 8506543090333340644}
   m_Layer: 6
   m_Name: Sheep
   m_TagString: Sheep
@@ -86,8 +87,35 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.55
-  m_Center: {x: 0, y: 0.45, z: 0}
---- !u!114 &2291335853568292973
+  m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!54 &5614550580018136407
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174841919354661393}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8506543090333340644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,11 +124,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 9174841919354661393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd4453501b94d9ba3db6a5582ca12ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 906baaa613944dd8b0c0f44833105ba2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PredatorPrey.OrganismView
-  graphics: {fileID: 3882168784124666801}
+  m_EditorClassIdentifier: Assembly-CSharp::SheepBehaviour
+  walkSpeed: 1.7
+  runSpeed: 4.2
+  turnSpeed: 280
+  wanderInterval: {x: 5, y: 9}
+  visionRadius: 9
+  perceptionInterval: 0.2
+  perceptionLayers:
+    serializedVersion: 2
+    m_Bits: 192
+  maxEnergy: 100
+  initialEnergy: {x: 55, y: 90}
+  energyLossPerSecond: 1.05
+  energyPerMeal: 27
+  hungerThreshold: 68
+  eatingDuration: 1
+  matingThreshold: 78
+  matingCost: 23
+  matingCooldown: 22
+  maturityAge: 16
+  newbornEnergy: 36
+  newbornScale: 0.6
   animator: {fileID: 7056167610032098790}
+  energy: 0
+  state: 0
+  fearDuration: 2
 --- !u!1001 &3496515866065121399
 PrefabInstance:
   m_ObjectHideFlags: 0

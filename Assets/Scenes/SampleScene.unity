@@ -436,8 +436,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1301260602}
-  - component: {fileID: 1301260601}
   - component: {fileID: 1301260600}
+  - component: {fileID: 1301260604}
+  - component: {fileID: 1301260603}
   m_Layer: 0
   m_Name: Simulation
   m_TagString: Untagged
@@ -457,56 +458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4a10c5ddd04403a99c8fbbe19a7e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimulationSpeed
---- !u!114 &1301260601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301260599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428b6244bf2c4698b87e36dce729eaaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PredatorPrey.EcosystemSimulation
-  sheepPrefab: {fileID: 2291335853568292973, guid: 8184128c425b54a769a401cf704d583f, type: 3}
-  wolfPrefab: {fileID: 1539363280824401554, guid: d7c485d07e32f473cabc954d51689a14, type: 3}
-  grassPrefab: {fileID: 2756860780859840686, guid: 5cfde2fd2865f450c84a3ecc707a642d, type: 3}
-  plot: {fileID: 808417617}
-  ground: {fileID: 1839410972}
-  settings:
-    seed: 17
-    initialSheep: 32
-    initialWolves: 5
-    grassPatches: 84
-    halfExtent: 30
-    regrowthSeconds: 12
-    sheep:
-      walkSpeed: 1.7
-      runSpeed: 3.7
-      turnDegreesPerSecond: 280
-      sightRadius: 8
-      energyPerSecond: 1.05
-      mealEnergy: 27
-      hungryAt: 68
-      eatingSeconds: 1
-      breedAt: 78
-      parentCost: 23
-      maturitySeconds: 16
-      cooldownSeconds: 22
-    wolves:
-      walkSpeed: 2
-      runSpeed: 4.9
-      turnDegreesPerSecond: 300
-      sightRadius: 12
-      energyPerSecond: 1
-      mealEnergy: 46
-      hungryAt: 62
-      eatingSeconds: 2.4
-      breedAt: 81
-      parentCost: 28
-      maturitySeconds: 24
-      cooldownSeconds: 32
 --- !u!4 &1301260602
 Transform:
   m_ObjectHideFlags: 0
@@ -522,6 +473,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1301260603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301260599}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056b6d94efc64550a18fe32126d97125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopulationExperiment
+  seeds: 110000001d0000002b0000003d0000004f00000061000000710000008300000097000000ad000000i
+  regrowthTimes:
+  - 12
+  - 24
+  - 48
+  durationSeconds: 600
+  sampleInterval: 10
+  timeStep: 0.02
+  outputFile: Experiments/regrowth.csv
+  hideDisplay: 1
+--- !u!114 &1301260604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301260599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fa4796c205433eb10b4d16c839fb59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Simulation
+  sheepPrefab: {fileID: 8506543090333340644, guid: 8184128c425b54a769a401cf704d583f, type: 3}
+  wolfPrefab: {fileID: 3778366980963634354, guid: d7c485d07e32f473cabc954d51689a14, type: 3}
+  grassPrefab: {fileID: 5413761444266398922, guid: 5cfde2fd2865f450c84a3ecc707a642d, type: 3}
+  initialSheep: 32
+  initialWolves: 5
+  grassCount: 84
+  seed: 17
+  halfSize: 30
+  edgeMargin: 4
+  ground: {fileID: 1839410972}
+  plot: {fileID: 808417617}
+  plotInterval: 1
+  statistics:
+    sheep: 0
+    wolves: 0
+    sheepBirths: 0
+    wolfBirths: 0
+    kills: 0
+    sheepStarved: 0
+    wolvesStarved: 0
+    grazings: 0
 --- !u!1001 &1519341345
 PrefabInstance:
   m_ObjectHideFlags: 0
